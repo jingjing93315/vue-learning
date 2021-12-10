@@ -1,23 +1,37 @@
 <template>
-  <div class="todo-container">
-    <div class="todo-wrap">
-      <MyHeader @addTodo="addTodo" />
-      <MyList :todos="todos" />
-      <MyFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo" />
+  <div class="container">
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <MyHeader @addTodo="addTodo" />
+        <MyList :todos="todos" />
+        <MyFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo" />
+      </div>
+    </div>
+     <div class="github-container">
+      <h3>github案例</h3>
+      <Search/>
+      <hr/>
+      <List />
     </div>
   </div>
 </template>
 <script>
+import axios from 'axios'
 import pubsub from 'pubsub-js'
 import MyHeader from './components/MyHeader'
 import MyFooter from './components/MyFooter'
 import MyList from './components/MyList'
+import Search from './components/github/Search.vue'
+import List from './components/github/List.vue'
+
 export default {
   name: 'App', //汇总所有子组件
   components: {
     MyHeader,
     MyFooter,
-    MyList
+    MyList,
+    Search,
+    List
   },
   data() {
     return {
@@ -59,6 +73,20 @@ export default {
     // 清除所有已经完成的todo
     clearAllTodo() {
       this.todos = this.todos.filter(todo => !todo.done)
+    },
+    getStudents() {
+      axios.get('http://localhost:8080/api/students').then(response => {
+        console.log('请求成功了', response.data)
+      }, error => {
+        console.log('请求失败了', error.message)
+      })
+    },
+    getCars() {
+      axios.get('http://localhost:8080/demo/cars').then(response => {
+        console.log('请求成功了', response.data)
+      }, error => {
+        console.log('请求失败了', error.message)
+      })
     }
   },
   watch: {
@@ -115,7 +143,7 @@ body {
   outline: none;
 }
 
-.todo-container {
+.todo-container,.github-container {
   width: 600px;
   margin: 0 auto;
 }
@@ -125,4 +153,5 @@ body {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
 </style>
