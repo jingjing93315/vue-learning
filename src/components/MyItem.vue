@@ -1,19 +1,15 @@
 <template>
-  <li>
-    <label for="checkbox">
-      <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)" />
-      <span v-show="!todo.isEdit">{{todo.title}}</span>
-      <input 
-        v-show="todo.isEdit" 
-        type="text" 
-        :value="todo.title"
-        @blur="handleBlur(todo,$event)"
-        ref="inputTitle"
-      >
-    </label>
-    <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
-    <button v-show="!todo.isEdit" class="btn btn-edit" @click="handleEdit(todo)">编辑</button>
-  </li>
+  <!-- <transition name="todo" appear> -->
+    <li>
+      <label for="checkbox">
+        <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)" />
+        <span v-show="!todo.isEdit">{{todo.title}}</span>
+        <input v-show="todo.isEdit" type="text" :value="todo.title" @blur="handleBlur(todo,$event)" ref="inputTitle">
+      </label>
+      <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+      <button v-show="!todo.isEdit" class="btn btn-edit" @click="handleEdit(todo)">编辑</button>
+    </li>
+  <!-- </transition> -->
 </template>
 
 <script>
@@ -32,19 +28,19 @@ export default {
       }
     },
     handleEdit(todo) {
-      if(Object.prototype.hasOwnProperty.call(todo, 'isEdit')){
+      if (Object.prototype.hasOwnProperty.call(todo, 'isEdit')) {
         // 此处使用todo.hasOwnProperty 提示错误
         todo.isEdit = true
-      }else {
+      } else {
         this.$set(todo, 'isEdit', true)
       }
-      this.$nextTick(()=>{
+      this.$nextTick(() => {
         this.$refs.inputTitle.focus()
       })
     },
-    handleBlur(todo,e){
+    handleBlur(todo, e) {
       todo.isEdit = false
-      if(!e.target.value.trim()) return alert('数据不能为空～')
+      if (!e.target.value.trim()) return alert('数据不能为空～')
       this.$bus.$emit('updateTodo', todo.id, e.target.value)
     }
   }
