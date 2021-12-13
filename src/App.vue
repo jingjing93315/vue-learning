@@ -13,7 +13,7 @@
       <hr/>
       <List />
     </div> -->
-    <div class="category-container">
+    <!-- <div class="category-container">
       <Category title="美食">
         <img class="img" slot="center" :src="imgUrl" alt="">
         <div class="foot" slot="footer">
@@ -40,11 +40,13 @@
           <h4 class="center">welcome</h4>
         </template>
       </Category>
-    </div>
+    </div> -->
+    <Count/>
   </div>
 </template>
 <script>
-import Category from "./components/Category.vue"
+// import Category from "./components/Category.vue"
+import Count from './components/Count.vue'
 // import axios from 'axios'
 // import pubsub from 'pubsub-js'
 // import MyHeader from './components/MyHeader'
@@ -56,22 +58,22 @@ import Category from "./components/Category.vue"
 export default {
   name: 'App', //汇总所有子组件
   components: {
-    Category
+    // Category
+    Count
   },
   data() {
     return {
       // todos: JSON.parse(localStorage.getItem('todos')) ?? []
-      foods: [
-        '火锅', '烧烤', '小龙虾', '牛排'
-      ],
-      games: [
-        '王者荣耀', '超级玛丽', '穿越火线'
-      ],
-      films: [
-        '《教父》', "《你好，李焕英》", "《菊次郎的夏天》"
-      ],
-      imgUrl: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/180/h/180',
-      videoUrl: ''
+      // foods: [
+      //   '火锅', '烧烤', '小龙虾', '牛排'
+      // ],
+      // games: [
+      //   '王者荣耀', '超级玛丽', '穿越火线'
+      // ],
+      // films: [
+      //   '《教父》', "《你好，李焕英》", "《菊次郎的夏天》"
+      // ],
+      // imgUrl: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/180/h/180',
     }
   },
   mounted() {
