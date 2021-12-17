@@ -42,11 +42,14 @@
       </Category>
     </div> -->
     <Count/>
+    <hr/>
+    <Person/>
   </div>
 </template>
 <script>
 // import Category from "./components/Category.vue"
 import Count from './components/Count.vue'
+import Person from './components/Person.vue'
 // import axios from 'axios'
 // import pubsub from 'pubsub-js'
 // import MyHeader from './components/MyHeader'
@@ -59,8 +62,9 @@ export default {
   name: 'App', //汇总所有子组件
   components: {
     // Category
-    Count
-  },
+    Count,
+    Person
+},
   data() {
     return {
       // todos: JSON.parse(localStorage.getItem('todos')) ?? []
